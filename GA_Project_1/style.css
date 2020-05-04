@@ -1,5 +1,5 @@
 * {
-    /* border: 1px solid gold; */
+    border: 1px solid gold;
     font-family: 'Baloo Tamma 2';
 }
 
@@ -22,14 +22,12 @@ body {
     display: flex;
     justify-content: center;
     margin-left: 15%;
-    font-size: 2em;
+    margin-top: 2%;
+    font-size: 3rem;
 }
 
 h1 {
     margin: 0 auto;
-    font-size: 3em;
-    padding: 0;
-
 }
 
 .content {
@@ -46,7 +44,7 @@ h1 {
     border: 2px solid black;
     box-shadow: 0 0 2px 2px;
     padding: 20px;
-
+    width: 25%;
 }
 
 .btn-row{
@@ -55,7 +53,6 @@ h1 {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
-
 }
 
 .button { 
@@ -75,8 +72,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 75vw;
+    width: 75%;
     background-color:  rgb(228, 228, 228);
     margin: 10px 20px;
     border-radius: 5px;
@@ -86,8 +82,11 @@ h1 {
 }
 
 .inner-hangman-container {
+    display: flex;
+    flex-direction: column;
     width: 95%;
     height: 95%;
+    margin-left: 2.2%;
     background-color: white;
     box-shadow: 0 0 2px 2px;
     border-radius: 5px;
@@ -99,21 +98,20 @@ h1 {
     margin: 0 0;
     padding: 0 0;
     justify-content: space-around;
-    height: 10vh;
+    height: 10%;
 }
 
 .hangman {
-    height: 70vh;
+    height: 65%;
 }
 
 .guess-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 20vh;
+    height: 25%;
     font-size: 5vw;
     letter-spacing: 2rem;
-
 }
 
 .guess {
@@ -124,17 +122,16 @@ h1 {
 .score-bar {
     display: flex;
     flex-direction: row;
-    height: 20vh; 
+    height: 15%; 
 }
 
 .empty-space {
-    width: 20vw;
-    height: 20vh;
+    width: 30%;
 }
 
 .scores {
     display: flex;
-    width: 80vw;
     flex-direction: row;
     justify-content: space-around;
+    width: 70%;
 }
