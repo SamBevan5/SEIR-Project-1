@@ -14,11 +14,12 @@
 const $button = $(`.button`);
 const $userStringBox = $(`.guess-container`);
 const $counters = $(`.counter`);
+const $playerOne = $(`.playerOne`);
+const $playerTwo = $(`.playerTwo`)
 
 //gameplay variables
 const words = [`SPORTS`, `SHORTS`, `HURTS`];
-const userWord = [];
-const guessedLetters = [];
+let userWord = [];
 let randomWord = ``;
 let splitRandomWord;
 
@@ -27,9 +28,9 @@ let guessesRemaining = 5;
 let lettersRemaining;
 
 //players
-const playerOneScore = 0;
-const playerTwoScore = 0;
-const player = 1;
+let playerOneScore = 0;
+let playerTwoScore = 0;
+let player = 1;
 
 
 
@@ -39,34 +40,55 @@ const player = 1;
 
 //resets the game 
 const resetGame = () => {
+    guessesRemaining = 5;
+    $userStringBox.empty();
+    $counters.empty();
+    userWord = [];
+    randomWord = ``;
+    resetButtons();
+    runGame();
 
-}
+};
 
 //checks player score to see if anyone won
 const checkScore = () => {
 
-}
+};
 
 //flips the player 
 const flipPlayer = () => {
-
-}
+    if (player === 1) {
+        player = 2;
+    } else {
+        player = 1;
+    }
+};
 
 //check the status of the game
 const checkGameStatus = () => {
     if (lettersRemaining <= 0){
-        alert(`congrats you won!`);
+        console.log(`you win`);
+        if (player === 1) {
+            playerOneScore = playerOneScore + 100;
+        } else {
+            playerTwoScore = playerTwoScore + 100;
+        }
+        resetGame();
+        flipPlayer();
+
     }
 
     if (guessesRemaining <= 0){
-        alert(`sorry you lose!`)
+        console.log(`you lose`);
+        resetGame();
+        flipPlayer();
     }
 };
 
 //update the counters
 const updateCounters = () => {
     $counters.empty();
-    $counters.append(`<h3>Guesses Remaining: ${guessesRemaining}</h3><h3>Letters Remaining: ${lettersRemaining}</h3>`);
+    $counters.append(`<h3 class = "guesses-remaining">Guesses Remaining: ${guessesRemaining}</h3><h3 class = "letters-remaining">Letters Remaining: ${lettersRemaining}</h3>`);
     checkGameStatus();
 };
 
@@ -87,31 +109,40 @@ const setUserWord = () => {
 //set the Counters
 const setCounters = () => {
     lettersRemaining = splitRandomWord.length;
-    $counters.append(`<h3>Guesses Remaining: ${guessesRemaining}</h3><h3>Letters Remaining: ${lettersRemaining}</h3>`);
+    $counters.append(`<h3 class = "guesses-remaining">Guesses Remaining: ${guessesRemaining}</h3><h3 class = "letters-remaining">Letters Remaining: ${lettersRemaining}</h3>`);
 };
 
+//sets player scores
+const setPlayerScore = () => {
+    $playerOne.empty();
+    $playerTwo.empty();
+    $playerOne.append(`<h2>Player 1 Score: ${playerOneScore}</h4>`);
+    $playerTwo.append(`<h2>Player 2 Score: ${playerTwoScore}</h4>`);
+};
+
+const changeGreen = (target) => {
+    target.css(`background-color`, `#556B2F`);
+    target.css(`box-shadow`, "0 0 2px 2px");
+}
 
 //actions when guess is right
 const guessIsCorrect = (target) => {
     userWord[x] = splitRandomWord[x];
     $userStringBox.empty();
     $userStringBox.append(userWord);
-    updateCounters();
-    setTimeout(() => {
-        target.css(`background-color`, `#556B2F`)
-        target.css(`box-shadow`, "0 0 2px 2px")
-    }, 200);
     target.off(`click`);
+    changeGreen(target);
+    updateCounters();
 };
 
 //actions when guess is wrong
 const guessIsIncorrect = (target) => {
-    updateCounters();
     setTimeout(() => {
         target.css(`background-color`, `#B22222`)
         target.css(`box-shadow`, "0 0 2px 2px")
-    }, 200);
+    }, 100);
     target.off(`click`);
+    updateCounters();
  
 };
 
@@ -136,32 +167,34 @@ const checkLetter = (letter, target) => {
 
 };
 
+//function to reset the buttons once the round is over
+const resetButtons = () => {
+    $button.off(`click`);
+    $button.css(`background-color`, `white`)
+    $button.on(`click`, (event) => {
+        const $element = $(event.currentTarget);
+        checkLetter($element.text().trim(), $element);
+    });
+
+}
+
 
 // animate the buttons
 $button.on(`click`, (event) => {
     const $element = $(event.currentTarget);
-    setTimeout(() => {
-        $element.css(`background-color`, `#DCDCDC`)
-        $element.css(`box-shadow`, "0 0 2px 2px inset")
-        $element.css(`font-size`, "1.3rem")
-    }, 0);
-    setTimeout(() => {
-        $element.css(`background-color`, `white`)
-        $element.css(`box-shadow`, "0 0 2px 2px")
-        $element.css(`font-size`, "1.5rem")
-    }, 200);
-
     checkLetter($element.text().trim(), $element);
     
-
 });
 
 
+runGame = () => {
+    setPlayerScore();
+    getRandomWord();
+    setUserWord();
+    setCounters();
+}
 
-
-getRandomWord();
-setUserWord();
-setCounters();
+runGame();
 
 
 

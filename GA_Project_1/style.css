@@ -1,5 +1,5 @@
 * {
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
     font-family: 'Baloo Tamma 2';
 }
 
@@ -101,6 +101,24 @@ h1 {
     height: 10%;
 }
 
+.guesses-remaining {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:#B22222;
+    box-shadow: 0 0 2px 2px;
+    padding: 5px;
+    color: white;
+}
+
+.letters-remaining {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:#556B2F;
+    box-shadow: 0 0 2px 2px;
+    padding: 5px;
+    color: white;
+}
+
 .hangman {
     height: 65%;
 }
@@ -122,7 +140,7 @@ h1 {
 .score-bar {
     display: flex;
     flex-direction: row;
-    height: 15%; 
+    margin-bottom: 5%; 
 }
 
 .empty-space {
@@ -134,4 +152,14 @@ h1 {
     flex-direction: row;
     justify-content: space-around;
     width: 70%;
+    letter-spacing: .2rem;
+}
+
+.scores h2 {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:rgb(228, 228, 228);
+    box-shadow: 0 0 2px 2px;
+    padding: 3px;
+
 }
