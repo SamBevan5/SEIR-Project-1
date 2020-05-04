@@ -40,9 +40,9 @@ let player = 1;
 
 //resets the game 
 const resetGame = () => {
-    guessesRemaining = 5;
     $userStringBox.empty();
     $counters.empty();
+    guessesRemaining = 5;
     userWord = [];
     randomWord = ``;
     resetButtons();
@@ -120,8 +120,15 @@ const setPlayerScore = () => {
     $playerTwo.append(`<h2>Player 2 Score: ${playerTwoScore}</h4>`);
 };
 
+//change the color of the button to green
 const changeGreen = (target) => {
     target.css(`background-color`, `#556B2F`);
+    target.css(`box-shadow`, "0 0 2px 2px");
+}
+
+//change the color of the button to red
+const changeRed = (target) => {
+    target.css(`background-color`, `#B22222`);
     target.css(`box-shadow`, "0 0 2px 2px");
 }
 
@@ -137,11 +144,8 @@ const guessIsCorrect = (target) => {
 
 //actions when guess is wrong
 const guessIsIncorrect = (target) => {
-    setTimeout(() => {
-        target.css(`background-color`, `#B22222`)
-        target.css(`box-shadow`, "0 0 2px 2px")
-    }, 100);
     target.off(`click`);
+    changeRed(target);
     updateCounters();
  
 };
@@ -179,7 +183,7 @@ const resetButtons = () => {
 }
 
 
-// animate the buttons
+//Set event listener on buttons and animate them
 $button.on(`click`, (event) => {
     const $element = $(event.currentTarget);
     checkLetter($element.text().trim(), $element);
@@ -187,6 +191,7 @@ $button.on(`click`, (event) => {
 });
 
 
+//Main function for running the game
 runGame = () => {
     setPlayerScore();
     getRandomWord();
