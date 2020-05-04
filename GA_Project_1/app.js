@@ -92,21 +92,31 @@ const setCounters = () => {
 
 
 //actions when guess is right
-const guessIsCorrect = () => {
+const guessIsCorrect = (target) => {
     userWord[x] = splitRandomWord[x];
     $userStringBox.empty();
     $userStringBox.append(userWord);
     updateCounters();
+    setTimeout(() => {
+        target.css(`background-color`, `#556B2F`)
+        target.css(`box-shadow`, "0 0 2px 2px")
+    }, 200);
+    target.off(`click`);
 };
 
 //actions when guess is wrong
-const guessIsIncorrect = () => {
+const guessIsIncorrect = (target) => {
     updateCounters();
+    setTimeout(() => {
+        target.css(`background-color`, `#B22222`)
+        target.css(`box-shadow`, "0 0 2px 2px")
+    }, 200);
+    target.off(`click`);
  
 };
 
 //check the letter that is guessed
-const checkLetter = (letter) => {
+const checkLetter = (letter, target) => {
     
     const letterCheck = splitRandomWord.some((value, index) => {
         return value == letter;
@@ -115,13 +125,13 @@ const checkLetter = (letter) => {
     for (x = 0; x < splitRandomWord.length; x++){
         if(letter == splitRandomWord[x]){
             lettersRemaining--;
-            guessIsCorrect();
+            guessIsCorrect(target);
         } 
     }
 
     if (letterCheck === false) {
         guessesRemaining--;
-        guessIsIncorrect();
+        guessIsIncorrect(target);
     }
 
 };
@@ -130,7 +140,6 @@ const checkLetter = (letter) => {
 // animate the buttons
 $button.on(`click`, (event) => {
     const $element = $(event.currentTarget);
-    const separatedLetter = $element.text().trim();
     setTimeout(() => {
         $element.css(`background-color`, `#DCDCDC`)
         $element.css(`box-shadow`, "0 0 2px 2px inset")
@@ -141,14 +150,9 @@ $button.on(`click`, (event) => {
         $element.css(`box-shadow`, "0 0 2px 2px")
         $element.css(`font-size`, "1.5rem")
     }, 200);
-    setTimeout(() => {
-        $element.css(`background-color`, `#B22222`)
-        $element.css(`box-shadow`, "0 0 2px 2px")
-        $element.empty();
-        $element.text(separatedLetter);
-    }, 300);
 
-    checkLetter($element.text().trim())
+    checkLetter($element.text().trim(), $element);
+    
 
 });
 
