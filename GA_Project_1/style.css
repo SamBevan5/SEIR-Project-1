@@ -130,7 +130,7 @@ h1 {
 #hangman-pictures {
     height: 80%;
     width: 80%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
 }
 
@@ -175,27 +175,46 @@ h1 {
 
 }
 
-.no-image {
-
-}
-
 .image1 {
+    background-image: url(img/first.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 
 }
 
 .image2 {
-
+    background-image: url(img/second.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .image3 {
-
+    background-image: url(img/third.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .image4 {
-
+    background-image: url(img/fourth.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .image5 {
+    background-image: url(img/fifth.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
+.image6 {
+    background-image: url(img/sixth.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 

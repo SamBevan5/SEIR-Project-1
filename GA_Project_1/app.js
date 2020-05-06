@@ -16,6 +16,7 @@ const $userStringBox = $(`.guess-container`);
 const $counters = $(`.counter`);
 const $playerOne = $(`.playerOne`);
 const $playerTwo = $(`.playerTwo`)
+const $hangman = $(`#hangman-pictures`);
 
 //gameplay variables
 const words = [`SPORTS`, `SHORTS`, `HURTS`];
@@ -86,6 +87,21 @@ const flipPlayer = () => {
     }
 };
 
+//updates the image on a wrong guess
+const updateImage = () => {
+    if (guessesRemaining === 4){
+        $hangman.css(`background-image`, `url(img/second.png)`)
+    } else if (guessesRemaining === 3) {
+        $hangman.css(`background-image`, `url(img/third.png)`)
+     } else if (guessesRemaining === 2) {
+        $hangman.css(`background-image`, `url(img/fourth.png)`)
+     } else if (guessesRemaining === 1) {
+        $hangman.css(`background-image`, `url(img/fifth.png)`)
+     } else if (guessesRemaining === 0) {
+        $hangman.css(`background-image`, `url(img/sixth.png)`)
+     }
+};
+
 //check the status of the game
 const checkGameStatus = () => {
     if (lettersRemaining <= 0){
@@ -113,7 +129,6 @@ const checkGameStatus = () => {
 const updateCounters = () => {
     $counters.empty();
     $counters.append(`<h3 class = "guesses-remaining">Guesses Remaining: ${guessesRemaining}</h3><h3 class = "letters-remaining">Letters Remaining: ${lettersRemaining}</h3>`);
-    checkGameStatus();
 };
 
 //get the random word
@@ -166,6 +181,7 @@ const guessIsCorrect = (target) => {
     target.off(`click`);
     changeGreen(target);
     updateCounters();
+    setTimeout(checkGameStatus, 5000);
 };
 
 //actions when guess is wrong
@@ -173,6 +189,8 @@ const guessIsIncorrect = (target) => {
     target.off(`click`);
     changeRed(target);
     updateCounters();
+    updateImage();
+    setTimeout(checkGameStatus, 5000);
  
 };
 
@@ -221,6 +239,7 @@ $button.on(`click`, (event) => {
 
 //Main function for running the game
 runGame = () => {
+    $hangman.css(`background-image`, `url(img/first.png)`)
     setPlayerScore();
     getRandomWord();
     setUserWord();
