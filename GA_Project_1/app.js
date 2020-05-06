@@ -147,13 +147,15 @@ const setPlayerScore = () => {
 //change the color of the button to green
 const changeGreen = (target) => {
     target.css(`background-color`, `#556B2F`);
-    target.css(`box-shadow`, "0 0 2px 2px");
+    target.css(`box-shadow`, "0 0 4px 4px inset");
+    target.css(`font-size`, "1.3rem");
 }
 
 //change the color of the button to red
 const changeRed = (target) => {
     target.css(`background-color`, `#B22222`);
-    target.css(`box-shadow`, "0 0 2px 2px");
+    target.css(`box-shadow`, "0 0 4px 4px inset");
+    target.css(`font-size`, "1.3rem");
 }
 
 //actions when guess is right
@@ -198,7 +200,9 @@ const checkLetter = (letter, target) => {
 //function to reset the buttons once the round is over
 const resetButtons = () => {
     $button.off(`click`);
-    $button.css(`background-color`, `white`)
+    $button.css(`background-color`, `white`);
+    $button.css(`box-shadow`, "0 0 4px 4px");
+    $button.css(`font-size`, "1.5rem");
     $button.on(`click`, (event) => {
         const $element = $(event.currentTarget);
         checkLetter($element.text().trim(), $element);
