@@ -38,8 +38,23 @@ let player = 1;
 //===Functions===//
 ///////////////////
 
-//resets the game 
+//resets the whole game
 const resetGame = () => {
+    $userStringBox.empty();
+    $counters.empty();
+    guessesRemaining = 5;
+    userWord = [];
+    randomWord = ``;
+    player = 1;
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    resetButtons();
+    runGame();
+}
+
+
+//sets a new ronud
+const resetRound = () => {
     $userStringBox.empty();
     $counters.empty();
     guessesRemaining = 5;
@@ -52,6 +67,13 @@ const resetGame = () => {
 
 //checks player score to see if anyone won
 const checkScore = () => {
+    if (playerOneScore >= 200) {
+        console.log(`player 1 won`)
+        resetGame();
+    } else if (playerTwoScore >= 200) {
+        console.log(`player 2 won!`)
+        resetGame();
+    }
 
 };
 
@@ -73,15 +95,17 @@ const checkGameStatus = () => {
         } else {
             playerTwoScore = playerTwoScore + 100;
         }
-        resetGame();
+        resetRound();
         flipPlayer();
+        checkScore();
 
     }
 
     if (guessesRemaining <= 0){
         console.log(`you lose`);
-        resetGame();
+        resetRound();
         flipPlayer();
+        checkScore();
     }
 };
 

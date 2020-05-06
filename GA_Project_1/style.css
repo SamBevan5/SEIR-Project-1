@@ -126,7 +126,7 @@ h1 {
 .guess-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-content: center;
     height: 25%;
     font-size: 5vw;
     letter-spacing: 2rem;
