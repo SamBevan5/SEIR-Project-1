@@ -19,7 +19,7 @@ const $playerTwo = $(`.playerTwo`)
 const $hangman = $(`#hangman-pictures`);
 
 //gameplay variables
-const words = [`SPORTS`, `HAMSTER`, `DOGS`];
+const words = [`SPORTS`, `FOOTBALL`, `HAMSTER`, `DOGS`, `CATS`, `RAINBOW`, `OOPS`, `SOMETHING`, `SAINT`, `PENNY`, `ROSIE`, `ROVER`, `FRENCH`, `EXPERIMENT`, `DEMO`, `MUSIC`, `POOF`, `EXPLORE`, `ENCOUNTER`, `EGGS`, `EGGO`, `STRANGE`, `OUTER`];
 let userWord = [];
 let randomWord = ``;
 let splitRandomWord;
@@ -103,13 +103,13 @@ const resetRound = () => {
 
 //checks player score to see if anyone won
 const checkScore = () => {
-    if (playerOneScore >= 200) {
+    if (playerOneScore >= 1000) {
         $modalWinHeader.empty();
         $modalWinHeader.append(`<h1>Congrats Player 1 you Won!</h1>`);
         closeModal2();
         openModal4();
         resetGame();
-    } else if (playerTwoScore >= 200) {
+    } else if (playerTwoScore >= 1000) {
         $modalWinHeader.empty();
         $modalWinHeader.append(`<h1>Congrats Player 1 you Won!</h1>`);
         closeModal2();
