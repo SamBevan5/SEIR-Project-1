@@ -18,3 +18,9 @@ https://sambevan5.github.io/SEIR-Project-1/
 
 ## Unsolved Problems:
 There were no unsolved problems here. I got done what I wanted to. With that being said there are a bunch of features I would of loved to have more time to work on such as a mobile friendly responsive layout and an intro landing page.
+
+## Challenges:
+Figuring out that I needed to use trim to trim off p tags on the text of the buttons. 
+
+Drawing the stick figure images haha - that took a long time.
+
