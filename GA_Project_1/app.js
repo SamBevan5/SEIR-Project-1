@@ -33,6 +33,10 @@ let playerOneScore = 0;
 let playerTwoScore = 0;
 let player = 1;
 
+//modal variables
+const $openBtn = $('#openModal');
+const $modal = $('#modal');
+const $closeBtn = $('#close');
 
 
 ///////////////////
@@ -235,6 +239,24 @@ $button.on(`click`, (event) => {
     checkLetter($element.text().trim(), $element);
     
 });
+
+//event listeners/handlers for instructions modal
+const openModal = () => {
+    $modal.css('display', 'block');
+    $openBtn.css(`box-shadow`, `0 0 3px 3px inset`);
+    $openBtn.css(`background-color`, `rgb(228, 228, 228)`);
+    $openBtn.css(`font-size`, `1.9rem`);
+  };
+  
+const closeModal = () => {
+    $modal.css('display', 'none');
+    $openBtn.css(`box-shadow`, `0 0 2px 2px`);
+    $openBtn.css(`background-color`, `white`);
+    $openBtn.css(`font-size`, `2rem`);
+  };
+
+$openBtn.on('click', openModal);
+$closeBtn.on('click', closeModal);
 
 
 //Main function for running the game

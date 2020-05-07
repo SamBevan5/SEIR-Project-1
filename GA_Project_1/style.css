@@ -21,9 +21,60 @@ body {
 .header {
     display: flex;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 2%;
     margin-top: 2%;
     font-size: 3rem;
+}
+
+#modal {
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+    overflow: auto;
+    font-size: .8rem;
+    display: none;
+}
+
+#modal-textbox {
+	background-color: white;
+	height: 550px;
+	width: 750px;
+	border-radius: 2px;
+	margin: 150px auto;
+    box-shadow: 0  0 4px 4px;
+    padding: 2%;
+    line-height: 300%;
+    font-size: .8rem;
+}
+
+#modal-footer {
+	text-align: right;
+}
+
+.modal-buttons {
+	padding: 14px 18px;
+	background-color: white;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	font-family: 'Arial';
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 0  0 2px 2px;
+    font-size: 2rem;
+}
+
+#modal-textbox p {
+    font-size: 1.7rem;
+}
+
+#modal-textbox h1 {
+    color: cornflowerblue;
+    font-size: 2rem;
 }
 
 h1 {
@@ -182,39 +233,3 @@ h1 {
     background-position: center;
 
 }
-
-.image2 {
-    background-image: url(img/second.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.image3 {
-    background-image: url(img/third.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.image4 {
-    background-image: url(img/fourth.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.image5 {
-    background-image: url(img/fifth.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.image6 {
-    background-image: url(img/sixth.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
