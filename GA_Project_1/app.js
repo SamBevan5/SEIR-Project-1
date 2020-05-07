@@ -33,10 +33,20 @@ let playerOneScore = 0;
 let playerTwoScore = 0;
 let player = 1;
 
-//modal variables
+//instructions modal variables
 const $openBtn = $('#openModal');
 const $modal = $('#modal');
 const $closeBtn = $('#close');
+
+//win-state modal variables
+const $openBtn2 = $('#openModal2');
+const $modal2 = $('#modal2');
+const $closeBtn2 = $('#close2');
+
+//lose-state modal variables
+const $openBtn3 = $('#openModal3');
+const $modal3 = $('#modal3');
+const $closeBtn3 = $('#close3');
 
 
 ///////////////////
@@ -103,13 +113,17 @@ const updateImage = () => {
         $hangman.css(`background-image`, `url(img/fifth.png)`)
      } else if (guessesRemaining === 0) {
         $hangman.css(`background-image`, `url(img/sixth.png)`)
+     } 
+     
+     if (lettersRemaining === 0) {
+         $hangman.css(`background-image`, `url(img/seven.png)`)
      }
 };
 
 //check the status of the game
 const checkGameStatus = () => {
     if (lettersRemaining <= 0){
-        console.log(`you win`);
+        openModal2();
         if (player === 1) {
             playerOneScore = playerOneScore + 100;
         } else {
@@ -122,7 +136,7 @@ const checkGameStatus = () => {
     }
 
     if (guessesRemaining <= 0){
-        console.log(`you lose`);
+        openModal3();
         resetRound();
         flipPlayer();
         checkScore();
@@ -185,7 +199,9 @@ const guessIsCorrect = (target) => {
     target.off(`click`);
     changeGreen(target);
     updateCounters();
-    setTimeout(checkGameStatus, 5000);
+    updateImage();
+    setTimeout(checkGameStatus, 8000);
+
 };
 
 //actions when guess is wrong
@@ -194,7 +210,7 @@ const guessIsIncorrect = (target) => {
     changeRed(target);
     updateCounters();
     updateImage();
-    setTimeout(checkGameStatus, 5000);
+    setTimeout(checkGameStatus, 8000);
  
 };
 
@@ -239,6 +255,28 @@ $button.on(`click`, (event) => {
     checkLetter($element.text().trim(), $element);
     
 });
+
+//event listeners/handlers for win-state modal
+const openModal3 = () => {
+    $modal3.css('display', 'block');
+  };
+  
+const closeModal3 = () => {
+    $modal3.css('display', 'none');
+  };
+
+$closeBtn3.on('click', closeModal3);
+
+//event listeners/handlers for win-state modal
+const openModal2 = () => {
+    $modal2.css('display', 'block');
+  };
+  
+const closeModal2 = () => {
+    $modal2.css('display', 'none');
+  };
+
+$closeBtn2.on('click', closeModal2);
 
 //event listeners/handlers for instructions modal
 const openModal = () => {
