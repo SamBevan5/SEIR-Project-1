@@ -53,6 +53,7 @@ const $openBtn4 = $('#openModal4');
 const $modal4 = $('#modal4');
 const $closeBtn4 = $('#close4');
 const $modalText4 = $('#modal-textbox4');
+const $modalWinHeader = $(`.win-modal-header`);
 
 
 ///////////////////
@@ -103,16 +104,14 @@ const resetRound = () => {
 //checks player score to see if anyone won
 const checkScore = () => {
     if (playerOneScore >= 200) {
-        $modalText4.empty();
-        $modalText4.prepend(`<h1>Congrats Player 1 you Won!</h1>`)
-        $modalText4.append(`<p>You are great at guessing. Close this to play again.</p>`)
+        $modalWinHeader.empty();
+        $modalWinHeader.append(`<h1>Congrats Player 1 you Won!</h1>`);
         closeModal2();
         openModal4();
         resetGame();
     } else if (playerTwoScore >= 200) {
-        $modalText4.empty();
-        $modalText4.prepend(`<h1>Congrats Player 2 You Won!</h1>`)
-        $modalText4.append(`<p>You are great at guessing. Close this to play again.</p>`)
+        $modalWinHeader.empty();
+        $modalWinHeader.append(`<h1>Congrats Player 1 you Won!</h1>`);
         closeModal2();
         openModal4();
         resetGame();
@@ -186,7 +185,7 @@ const guessIsCorrect = (target) => {
     changeGreen(target);
     updateCounters();
     updateImage();
-    setTimeout(checkGameStatus, 8000);
+    setTimeout(checkGameStatus, 6000);
 
 };
 
@@ -196,7 +195,7 @@ const guessIsIncorrect = (target) => {
     changeRed(target);
     updateCounters();
     updateImage();
-    setTimeout(checkGameStatus, 8000);
+    setTimeout(checkGameStatus, 6000);
  
 };
 
