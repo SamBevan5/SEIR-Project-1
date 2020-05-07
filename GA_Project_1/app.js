@@ -7,7 +7,7 @@
 
 
 ////////////////////////
-//==Global Variables==//
+//==Variables==//
 ////////////////////////
 
 //jQuery Variables
@@ -19,7 +19,7 @@ const $playerTwo = $(`.playerTwo`)
 const $hangman = $(`#hangman-pictures`);
 
 //gameplay variables
-const words = [`SPORTS`, `SHORTS`, `HURTS`];
+const words = [`SPORTS`, `HAMSTER`, `DOGS`];
 let userWord = [];
 let randomWord = ``;
 let splitRandomWord;
@@ -38,20 +38,40 @@ const $openBtn = $('#openModal');
 const $modal = $('#modal');
 const $closeBtn = $('#close');
 
-//win-state modal variables
+//win round modal variables
 const $openBtn2 = $('#openModal2');
 const $modal2 = $('#modal2');
 const $closeBtn2 = $('#close2');
 
-//lose-state modal variables
+//lose round modal variables
 const $openBtn3 = $('#openModal3');
 const $modal3 = $('#modal3');
 const $closeBtn3 = $('#close3');
+
+//win the game modal variables
+const $openBtn4 = $('#openModal4');
+const $modal4 = $('#modal4');
+const $closeBtn4 = $('#close4');
+const $modalText4 = $('#modal-textbox4');
 
 
 ///////////////////
 //===Functions===//
 ///////////////////
+
+//change the color of the button to green
+const changeGreen = (target) => {
+    target.css(`background-color`, `#556B2F`);
+    target.css(`box-shadow`, "0 0 4px 4px inset");
+    target.css(`font-size`, "1.3rem");
+}
+
+//change the color of the button to red
+const changeRed = (target) => {
+    target.css(`background-color`, `#B22222`);
+    target.css(`box-shadow`, "0 0 4px 4px inset");
+    target.css(`font-size`, "1.3rem");
+}
 
 //resets the whole game
 const resetGame = () => {
@@ -83,10 +103,14 @@ const resetRound = () => {
 //checks player score to see if anyone won
 const checkScore = () => {
     if (playerOneScore >= 200) {
-        console.log(`player 1 won`)
+        $modalText4.prepend(`<h1>Congrats Player 1 you Won!</h1>`)
+        closeModal2();
+        openModal4();
         resetGame();
     } else if (playerTwoScore >= 200) {
-        console.log(`player 2 won!`)
+        $modalText4.prepend(`<h1>Congrats Player 2 You Won!</h1>`)
+        closeModal2();
+        openModal4();
         resetGame();
     }
 
@@ -133,7 +157,7 @@ const checkGameStatus = () => {
         flipPlayer();
         checkScore();
 
-    }
+    } 
 
     if (guessesRemaining <= 0){
         openModal3();
@@ -147,6 +171,50 @@ const checkGameStatus = () => {
 const updateCounters = () => {
     $counters.empty();
     $counters.append(`<h3 class = "guesses-remaining">Guesses Remaining: ${guessesRemaining}</h3><h3 class = "letters-remaining">Letters Remaining: ${lettersRemaining}</h3>`);
+};
+
+//actions when guess is right
+const guessIsCorrect = (target) => {
+    userWord[x] = splitRandomWord[x];
+    $userStringBox.empty();
+    $userStringBox.append(userWord);
+    target.off(`click`);
+    changeGreen(target);
+    updateCounters();
+    updateImage();
+    setTimeout(checkGameStatus, 6000);
+
+};
+
+//actions when guess is wrong
+const guessIsIncorrect = (target) => {
+    target.off(`click`);
+    changeRed(target);
+    updateCounters();
+    updateImage();
+    setTimeout(checkGameStatus, 6000);
+ 
+};
+
+//check the letter that is guessed
+const checkLetter = (letter, target) => {
+    
+    const letterCheck = splitRandomWord.some((value, index) => {
+        return value == letter;
+    })
+
+    for (x = 0; x < splitRandomWord.length; x++){
+        if(letter == splitRandomWord[x]){
+            lettersRemaining--;
+            guessIsCorrect(target);
+        } 
+    }
+
+    if (letterCheck === false) {
+        guessesRemaining--;
+        guessIsIncorrect(target);
+    }
+
 };
 
 //get the random word
@@ -177,86 +245,18 @@ const setPlayerScore = () => {
     $playerTwo.append(`<h2>Player 2 Score: ${playerTwoScore}</h4>`);
 };
 
-//change the color of the button to green
-const changeGreen = (target) => {
-    target.css(`background-color`, `#556B2F`);
-    target.css(`box-shadow`, "0 0 4px 4px inset");
-    target.css(`font-size`, "1.3rem");
-}
+//event listeners/handlers for lose round modal
+const openModal4 = () => {
+    $modal4.css('display', 'block');
+  };
+  
+const closeModal4 = () => {
+    $modal4.css('display', 'none');
+  };
 
-//change the color of the button to red
-const changeRed = (target) => {
-    target.css(`background-color`, `#B22222`);
-    target.css(`box-shadow`, "0 0 4px 4px inset");
-    target.css(`font-size`, "1.3rem");
-}
+$closeBtn4.on('click', closeModal4);
 
-//actions when guess is right
-const guessIsCorrect = (target) => {
-    userWord[x] = splitRandomWord[x];
-    $userStringBox.empty();
-    $userStringBox.append(userWord);
-    target.off(`click`);
-    changeGreen(target);
-    updateCounters();
-    updateImage();
-    setTimeout(checkGameStatus, 8000);
-
-};
-
-//actions when guess is wrong
-const guessIsIncorrect = (target) => {
-    target.off(`click`);
-    changeRed(target);
-    updateCounters();
-    updateImage();
-    setTimeout(checkGameStatus, 8000);
- 
-};
-
-//check the letter that is guessed
-const checkLetter = (letter, target) => {
-    
-    const letterCheck = splitRandomWord.some((value, index) => {
-        return value == letter;
-    })
-
-    for (x = 0; x < splitRandomWord.length; x++){
-        if(letter == splitRandomWord[x]){
-            lettersRemaining--;
-            guessIsCorrect(target);
-        } 
-    }
-
-    if (letterCheck === false) {
-        guessesRemaining--;
-        guessIsIncorrect(target);
-    }
-
-};
-
-//function to reset the buttons once the round is over
-const resetButtons = () => {
-    $button.off(`click`);
-    $button.css(`background-color`, `white`);
-    $button.css(`box-shadow`, "0 0 4px 4px");
-    $button.css(`font-size`, "1.5rem");
-    $button.on(`click`, (event) => {
-        const $element = $(event.currentTarget);
-        checkLetter($element.text().trim(), $element);
-    });
-
-}
-
-
-//Set event listener on buttons and animate them
-$button.on(`click`, (event) => {
-    const $element = $(event.currentTarget);
-    checkLetter($element.text().trim(), $element);
-    
-});
-
-//event listeners/handlers for win-state modal
+//event listeners/handlers for lose round modal
 const openModal3 = () => {
     $modal3.css('display', 'block');
   };
@@ -267,7 +267,7 @@ const closeModal3 = () => {
 
 $closeBtn3.on('click', closeModal3);
 
-//event listeners/handlers for win-state modal
+//event listeners/handlers for win round modal
 const openModal2 = () => {
     $modal2.css('display', 'block');
   };
@@ -295,6 +295,26 @@ const closeModal = () => {
 
 $openBtn.on('click', openModal);
 $closeBtn.on('click', closeModal);
+
+//function to reset the buttons once the round is over
+const resetButtons = () => {
+    $button.off(`click`);
+    $button.css(`background-color`, `white`);
+    $button.css(`box-shadow`, "0 0 4px 4px");
+    $button.css(`font-size`, "1.5rem");
+    $button.on(`click`, (event) => {
+        const $element = $(event.currentTarget);
+        checkLetter($element.text().trim(), $element);
+    });
+
+}
+
+//Set event listener on buttons and animate them
+$button.on(`click`, (event) => {
+    const $element = $(event.currentTarget);
+    checkLetter($element.text().trim(), $element);
+    
+});
 
 
 //Main function for running the game

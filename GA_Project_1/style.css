@@ -48,7 +48,7 @@ body {
     box-shadow: 0  0 4px 4px;
     padding: 2%;
     line-height: 300%;
-    font-size: .8rem;
+    font-size: .6rem;
 }
 
 #modal-footer {
@@ -73,7 +73,7 @@ body {
 }
 
 #modal-textbox h1 {
-    color: #556B2F;
+    color: cornflowerblue;
     font-size: 2rem;
 }
 
@@ -124,7 +124,7 @@ body {
 }
 
 #modal-textbox2 h1 {
-    color: cornflowerblue;
+    color: #556B2F;
     font-size: 2rem;
 }
 
@@ -175,6 +175,58 @@ body {
 }
 
 #modal-textbox3 h1 {
+    color: #B22222;
+    font-size: 2rem;
+}
+
+#modal4 {
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+    overflow: auto;
+    font-size: .8rem;
+    display: none;
+}
+
+#modal-textbox4 {
+	background-color: white;
+	height: 400px;
+	width: 500px;
+	border-radius: 2px;
+	margin: 150px auto;
+    box-shadow: 0  0 4px 4px;
+    padding: 2%;
+    line-height: 300%;
+    font-size: .8rem;
+    z-index: 1;
+}
+
+#modal-footer4 {
+	text-align: right;
+}
+
+.modal-buttons4 {
+	padding: 14px 18px;
+	background-color: white;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	font-family: 'Arial';
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 0  0 2px 2px;
+    font-size: 2rem;
+}
+
+#modal-textbox4 p {
+    font-size: 1.7rem;
+}
+
+#modal-textbox4 h1 {
     color: cornflowerblue;
     font-size: 2rem;
 }
