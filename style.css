@@ -267,10 +267,7 @@ h1 {
 }
 
 
-@media screen and (max-width: 900px) {
-    body {
-      /* background-color: blue; */
-    }
+@media screen and (max-width: 1024px) {
     .main-container {
         height: 100%;
     }
