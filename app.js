@@ -185,7 +185,7 @@ const guessIsCorrect = (target) => {
     changeGreen(target);
     updateCounters();
     updateImage();
-    setTimeout(checkGameStatus, 6000);
+    setTimeout(checkGameStatus, 2000);
 
 };
 
@@ -195,7 +195,7 @@ const guessIsIncorrect = (target) => {
     changeRed(target);
     updateCounters();
     updateImage();
-    setTimeout(checkGameStatus, 6000);
+    setTimeout(checkGameStatus, 2000);
  
 };
 
