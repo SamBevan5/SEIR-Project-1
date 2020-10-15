@@ -19,7 +19,7 @@ const $playerTwo = $(`.playerTwo`)
 const $hangman = $(`#hangman-pictures`);
 
 //gameplay variables
-const words = [`SPORTS`, `FOOTBALL`, `HAMSTER`, `DOGS`, `CATS`, `RAINBOW`, `OOPS`, `SOMETHING`, `SAINT`, `PENNY`, `ROSIE`, `ROVER`, `FRENCH`, `EXPERIMENT`, `DEMO`, `MUSIC`, `POOF`, `EXPLORE`, `ENCOUNTER`, `EGGS`, `EGGO`, `STRANGE`, `OUTER`];
+const words = [`SPORTS`, `FOOT`, `HAMSTER`, `DOGS`, `CATS`, `RAIN`, `OOPS`, `SOME`, `SAINT`, `PENNY`, `ROSIE`, `ROVER`, `FRENCH`, `HELLO`, `DEMO`, `MUSIC`, `POOF`, `EXPLORE`, `COUNT`, `EGGS`, `EGGO`, `STRANGE`, `OUTER`];
 let userWord = [];
 let randomWord = ``;
 let splitRandomWord;

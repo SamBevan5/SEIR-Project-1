@@ -12,7 +12,7 @@
   }
 
 * {
-    /* border: 1px solid gold; */
+    /* border: red 2px solid; */
     font-family: 'Baloo Tamma 2';
 }
 
@@ -24,14 +24,13 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(225, 249, 255);
-    width: 90%;
+    height: 100vh;
     margin: 0 auto;
 }
 
 .header {
     display: flex;
     justify-content: center;
-    margin-left: 2%;
     margin-top: 2%;
     font-size: 3rem;
 }
@@ -91,24 +90,12 @@ h1 {
     flex-direction: column;
     justify-content: center;
     width: 75%;
-    background-color:  rgb(228, 228, 228);
+    background-color:  white;
     margin: 10px 20px;
     border-radius: 5px;
     border: 2px solid black;
     box-shadow: 0 0 2px 2px;
 
-}
-
-.inner-hangman-container {
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    height: 95%;
-    margin-left: 2.2%;
-    background-color: white;
-    box-shadow: 0 0 2px 2px;
-    border-radius: 5px;
-    border: 2px solid black;
 }
 
 .counter {
@@ -269,7 +256,8 @@ h1 {
 
 @media screen and (max-width: 1024px) {
     .main-container {
-        height: 100%;
+        height: 100vh
+
     }
 
     h1 {
@@ -292,8 +280,12 @@ h1 {
     }
     .hangman-container {
         margin: 15px 0;
+        height: 60vh;
         width: 100%;
-        height: 70vh;
+    }
+
+    .inner-hangman-container {
+        height: 100%;
     }
 
     .btn-row {
@@ -323,7 +315,6 @@ h1 {
     #openModal {
         display: none;
     }
-    /* fix */
 
 
     .header {
@@ -338,15 +329,6 @@ h1 {
     .counter {
         display: flex;
         flex-direction: column;
-        margin: 0;
-        padding: 0;
-        justify-content: center;
-        height: 40px;
-
-    }
-
-    .counter {
-        display: flex;
         margin: 0 0;
         padding: 0 0;
         justify-content: space-around;
@@ -362,7 +344,6 @@ h1 {
         background-color:#B22222;
         box-shadow: 0 0 2px 2px;
         color: white;
-        height: 50%;
         width: 90%;
     }
     
@@ -372,8 +353,11 @@ h1 {
         background-color:#556B2F;
         box-shadow: 0 0 2px 2px;
         color: white;
-        height: 50%;
         width: 90%;
+    }
+
+    .hangman {
+        height: 40%;
     }
 
     .score-bar {
